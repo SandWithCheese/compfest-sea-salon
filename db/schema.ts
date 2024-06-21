@@ -29,7 +29,8 @@ export const reviews = pgTable("review", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
   userId: uuid("user_id")
     .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+    .references(() => users.id, { onDelete: "cascade" })
+    .unique(),
 });
 
 export const branches = pgTable("branch", {
@@ -75,8 +76,11 @@ export const reservations = pgTable("reservation", {
     .references(() => services.id, { onDelete: "cascade" }),
 });
 
-export const usersRelations = relations(users, ({ many }) => ({
-  reviews: many(reviews),
+export const usersRelations = relations(users, ({ one, many }) => ({
+  reviews: one(reviews, {
+    fields: [users.id],
+    references: [reviews.userId],
+  }),
   reservations: many(reservations),
 }));
 
