@@ -23,7 +23,7 @@ function Navbar() {
   const isLoggedIn = session.status === "authenticated";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background px-16 py-4">
+    <header className="sticky top-0 z-50 border-b border-border bg-background px-6 py-4 lg:px-16">
       <nav className="flex justify-between">
         <Link href="/" className="flex items-center">
           <SEALogo
