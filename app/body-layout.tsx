@@ -1,14 +1,17 @@
 "use client";
 
-import { Inter } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
-
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 function BodyLayout({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
-      <body className={inter.className}>{children}</body>
+      <body className="font-montserrat bg-background text-foreground">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </SessionProvider>
   );
 }
