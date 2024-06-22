@@ -7,7 +7,7 @@ import TiktokLogo from "./svg/tiktok-logo";
 
 function Footer() {
   return (
-    <footer className="z-50 flex flex-col gap-12 border-t border-border bg-background px-16 py-8">
+    <footer className="z-50 flex flex-col gap-12 border-t border-border bg-background px-6 py-8 lg:px-16">
       <div className="lg:self-start">
         <div className="flex flex-col items-center">
           <SEALogo
