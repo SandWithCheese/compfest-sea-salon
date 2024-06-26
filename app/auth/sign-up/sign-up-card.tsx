@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { signUpSchema } from "@/lib/zod-schema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -24,6 +24,8 @@ import { z } from "zod";
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
 function SignUpCard() {
+  const session = useSession();
+
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
   });
@@ -90,6 +92,10 @@ function SignUpCard() {
     });
 
     // Redirect to dashboard page
+    router.push("/dashboard");
+  }
+
+  if (session.data) {
     router.push("/dashboard");
   }
 
