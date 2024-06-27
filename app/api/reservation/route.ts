@@ -36,11 +36,15 @@ export async function POST(request: NextRequest) {
   // Desctructure form data
   const { branch, datetime, service, userId } = zodParseResult.data;
 
+  // Convert datetime to GMT+7
+  const date = new Date(datetime);
+  date.setHours(date.getHours() + 7);
+
   // Create reservation
   try {
     await db.insert(reservations).values({
       id: uuid(),
-      datetime: new Date(datetime),
+      datetime: date,
       branchId: branch,
       serviceId: service,
       userId: userId,

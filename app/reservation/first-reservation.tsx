@@ -67,7 +67,7 @@ function FirstReservation({ branches }: { branches: Branches }) {
                     type="name"
                     placeholder="Name"
                     disabled
-                    value={session.data?.name}
+                    value={session?.name}
                   />
                 </FormControl>
                 <FormMessage />
@@ -80,7 +80,7 @@ function FirstReservation({ branches }: { branches: Branches }) {
                     type="phone"
                     placeholder="Phone Number"
                     disabled
-                    value={session.data?.phone}
+                    value={session?.phone}
                   />
                 </FormControl>
                 <FormMessage />

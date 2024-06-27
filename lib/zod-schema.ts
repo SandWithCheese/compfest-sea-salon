@@ -69,3 +69,13 @@ export const reservationSchema = z.object({
       message: "Invalid date",
     }),
 });
+
+export const reviewsSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  comment: z.string().min(1, { message: "Comment is required" }),
+  rating: z
+    .number()
+    .int()
+    .min(1, { message: "Rating must be between 1 and 5" })
+    .max(5, { message: "Rating must be between 1 and 5" }),
+});

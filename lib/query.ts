@@ -2,11 +2,18 @@
 
 import { db } from "@/db/drizzle";
 import { getServerSession } from "next-auth";
-import { branches, services, branchservices } from "@/db/schema";
+import {
+  branches,
+  services,
+  branchservices,
+  reviews,
+  users,
+} from "@/db/schema";
 import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
-import { eq } from "drizzle-orm";
+import { eq, ne } from "drizzle-orm";
 import { Branch, Branches } from "@/types/branch";
 import { Services } from "@/types/service";
+import { Reviews, ReviewsWithUser, ReviewWithUser } from "@/types/reviews";
 
 export async function getBranches(): Promise<Branches | null> {
   // Validate user session
@@ -66,4 +73,83 @@ export async function getServicesFromBranchId(
     .where(eq(branches.id, id));
 
   return branchServicesQuery;
+}
+
+export async function getReviews(): Promise<Reviews | null> {
+  // Get all reviews
+  const reviewsQuery = await db.select().from(reviews);
+
+  return reviewsQuery;
+}
+
+export async function getReviewsWithUsers(): Promise<ReviewsWithUser | null> {
+  // Get all reviews with user
+  const reviewsQuery = await db
+    .select({
+      id: reviews.id,
+      rating: reviews.rating,
+      comment: reviews.comment,
+      createdAt: reviews.createdAt,
+      updatedAt: reviews.updatedAt,
+      name: users.name,
+    })
+    .from(reviews)
+    .innerJoin(users, eq(reviews.userId, users.id));
+
+  return reviewsQuery;
+}
+
+export async function getReviewWithUser(
+  id: string,
+): Promise<ReviewWithUser | null> {
+  // Get all reviews with user
+  const reviewsQuery = await db
+    .select({
+      id: reviews.id,
+      rating: reviews.rating,
+      comment: reviews.comment,
+      createdAt: reviews.createdAt,
+      updatedAt: reviews.updatedAt,
+      name: users.name,
+    })
+    .from(reviews)
+    .innerJoin(users, eq(reviews.userId, users.id))
+    .where(eq(reviews.userId, id));
+
+  if (reviewsQuery.length === 0) {
+    return null;
+  }
+
+  return reviewsQuery[0];
+}
+
+export async function getReviewsWithUserExceptCurrentUser(
+  id: string,
+): Promise<ReviewsWithUser | null> {
+  // Get all reviews with user except current user
+  const reviewsQuery = await db
+    .select({
+      id: reviews.id,
+      rating: reviews.rating,
+      comment: reviews.comment,
+      createdAt: reviews.createdAt,
+      updatedAt: reviews.updatedAt,
+      name: users.name,
+    })
+    .from(reviews)
+    .innerJoin(users, eq(reviews.userId, users.id))
+    .where(ne(reviews.userId, id));
+
+  return reviewsQuery;
+}
+
+export async function getAllReviewsWithUser(
+  id: string,
+): Promise<[ReviewsWithUser | null, ReviewWithUser | null]> {
+  const reviews = await Promise.all([
+    getReviewsWithUserExceptCurrentUser(id),
+    getReviewWithUser(id),
+  ]);
+
+  return reviews;
 }

@@ -7,9 +7,9 @@ import SecondReservation from "./second-reservation";
 import { firstReservationSchema } from "@/lib/zod-schema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SessionContextValue, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Branches } from "@/types/branch";
+import { Session } from "next-auth";
 
 export type FirstReservationFormValues = z.infer<typeof firstReservationSchema>;
 
@@ -17,20 +17,25 @@ type ReservationFormContextType = {
   currentStep: number;
   setCurrentStep: (step: number) => void;
   form1: UseFormReturn<FirstReservationFormValues>;
-  session: SessionContextValue<boolean>;
+  session: Session | null;
 };
 
 export const ReservationFormContext =
   createContext<ReservationFormContextType | null>(null);
 
-function ReservationForm({ branches }: { branches: Branches }) {
-  const session = useSession();
+function ReservationForm({
+  session,
+  branches,
+}: {
+  session: Session | null;
+  branches: Branches;
+}) {
   const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState(0);
   const form1 = useForm<FirstReservationFormValues>({
     resolver: zodResolver(firstReservationSchema),
-    defaultValues: { userId: session.data?.id },
+    defaultValues: { userId: session?.id },
   });
 
   const [contextValue, setContextValue] = useState<ReservationFormContextType>({
@@ -40,7 +45,7 @@ function ReservationForm({ branches }: { branches: Branches }) {
     session,
   });
 
-  if (!session.data) {
+  if (!session) {
     router.push("/auth/sign-in");
   }
 

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -39,6 +40,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { convertTo12HourFormat } from "@/lib/time";
 
 function SecondReservation({ branches }: { branches: Branches }) {
   const [services, setServices] = useState<Services | null>([]);
@@ -54,11 +56,11 @@ function SecondReservation({ branches }: { branches: Branches }) {
   const { setCurrentStep, form1 } = context;
   const currentBranch = branches.find(
     (branch) => branch.id === form1.getValues("branch"),
-  );
+  )!;
 
   const secondReservationSchema = generateSecondReservationSchema(
-    currentBranch?.openingTime!,
-    currentBranch?.closingTime!,
+    currentBranch.openingTime,
+    currentBranch.closingTime,
   );
 
   type SecondReservationFormValues = z.infer<typeof secondReservationSchema>;
@@ -133,7 +135,7 @@ function SecondReservation({ branches }: { branches: Branches }) {
             aria-label="Back Button"
             onClick={() => {
               setCurrentStep(0);
-              form2.reset({ service: "" });
+              form2.reset({ service: "", datetime: new Date() });
             }}
           >
             <ChevronLeft size={20} />
@@ -218,23 +220,21 @@ function SecondReservation({ branches }: { branches: Branches }) {
                         onJsDateChange={field.onChange}
                       />
                     </FormControl>
+                    <FormDescription>
+                      This branch opens at{" "}
+                      {convertTo12HourFormat(currentBranch.openingTime)} and
+                      closes at{" "}
+                      {convertTo12HourFormat(currentBranch.closingTime)}
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              {/* 
-      <Button
-        className="rounded-full px-8 lg:px-16"
-        onClick={() => setCurrentStep(0)}
-      >
-        Previous Step
-      </Button> */}
-
               <FormItem className="self-center">
                 <FormControl>
                   <Button type="submit" className="rounded-full px-8 lg:px-16">
-                    Sign In
+                    Reserve
                   </Button>
                 </FormControl>
               </FormItem>
