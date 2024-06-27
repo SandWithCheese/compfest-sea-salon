@@ -42,7 +42,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { convertTo12HourFormat } from "@/lib/time";
 
-function SecondReservation({ branches }: { branches: Branches }) {
+function SecondReservation({ branches }: { branches: Branches | null }) {
   const [services, setServices] = useState<Services | null>([]);
 
   const context = useContext(ReservationFormContext);
@@ -54,7 +54,7 @@ function SecondReservation({ branches }: { branches: Branches }) {
   }
 
   const { setCurrentStep, form1 } = context;
-  const currentBranch = branches.find(
+  const currentBranch = branches?.find(
     (branch) => branch.id === form1.getValues("branch"),
   )!;
 
@@ -233,7 +233,11 @@ function SecondReservation({ branches }: { branches: Branches }) {
 
               <FormItem className="self-center">
                 <FormControl>
-                  <Button type="submit" className="rounded-full px-8 lg:px-16">
+                  <Button
+                    disabled={form2.formState.isSubmitting}
+                    type="submit"
+                    className="rounded-full px-8 lg:px-16"
+                  >
                     Reserve
                   </Button>
                 </FormControl>

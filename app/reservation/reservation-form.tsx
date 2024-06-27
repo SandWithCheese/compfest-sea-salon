@@ -28,7 +28,7 @@ function ReservationForm({
   branches,
 }: {
   session: Session | null;
-  branches: Branches;
+  branches: Branches | null;
 }) {
   const router = useRouter();
 

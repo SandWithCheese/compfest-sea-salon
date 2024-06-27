@@ -147,6 +147,7 @@ function EditDialog({
             variant={"destructive"}
             aria-label="Delete Button"
             onClick={onDelete}
+            disabled={form.formState.isSubmitting}
           >
             <Trash2 className="text-foreground" />
             <span className="sr-only">Delete</span>
@@ -211,7 +212,11 @@ function EditDialog({
 
             <FormItem>
               <FormControl>
-                <Button type="submit" className="rounded-full px-8 lg:px-16">
+                <Button
+                  disabled={form.formState.isSubmitting}
+                  type="submit"
+                  className="rounded-full px-8 lg:px-16"
+                >
                   Edit Review
                 </Button>
               </FormControl>

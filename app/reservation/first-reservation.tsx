@@ -35,7 +35,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Branches } from "@/types/branch";
 
-function FirstReservation({ branches }: { branches: Branches }) {
+function FirstReservation({ branches }: { branches: Branches | null }) {
   const context = useContext(ReservationFormContext);
 
   if (!context) {
@@ -104,7 +104,7 @@ function FirstReservation({ branches }: { branches: Branches }) {
                             )}
                           >
                             {field.value
-                              ? branches.find(
+                              ? branches?.find(
                                   (branch) => branch.id === field.value,
                                 )?.name
                               : "Select branch..."}
@@ -117,7 +117,7 @@ function FirstReservation({ branches }: { branches: Branches }) {
                           <CommandInput placeholder="Search language..." />
                           <CommandEmpty>No language found.</CommandEmpty>
                           <CommandGroup>
-                            {branches.map((branch) => (
+                            {branches?.map((branch) => (
                               <CommandItem
                                 value={branch.name}
                                 key={branch.id}

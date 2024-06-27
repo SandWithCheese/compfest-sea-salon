@@ -155,7 +155,11 @@ function ReviewDialog({ session }: { session: Session | null }) {
 
             <FormItem>
               <FormControl>
-                <Button type="submit" className="rounded-full px-8 lg:px-16">
+                <Button
+                  disabled={form.formState.isSubmitting}
+                  type="submit"
+                  className="rounded-full px-8 lg:px-16"
+                >
                   Add Review
                 </Button>
               </FormControl>
