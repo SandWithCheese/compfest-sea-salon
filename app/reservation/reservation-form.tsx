@@ -7,7 +7,6 @@ import SecondReservation from "./second-reservation";
 import { firstReservationSchema } from "@/lib/zod-schema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { Branches } from "@/types/branch";
 import { Session } from "next-auth";
 
@@ -30,8 +29,6 @@ function ReservationForm({
   session: Session | null;
   branches: Branches | null;
 }) {
-  const router = useRouter();
-
   const [currentStep, setCurrentStep] = useState(0);
   const form1 = useForm<FirstReservationFormValues>({
     resolver: zodResolver(firstReservationSchema),
@@ -44,10 +41,6 @@ function ReservationForm({
     form1,
     session,
   });
-
-  if (!session) {
-    router.push("/auth/sign-in");
-  }
 
   return (
     <section className="flex h-full w-full flex-col items-center justify-center">

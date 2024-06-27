@@ -3,9 +3,15 @@ import ReservationForm from "./reservation-form";
 import { getBranches } from "@/lib/query";
 import { authOptions } from "../api/auth/[...nextauth]/auth-options";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 async function Page() {
   const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/auth/sign-in");
+  }
+
   const branches = await getBranches();
 
   return (
