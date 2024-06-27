@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { signInSchema } from "@/lib/zod-schema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Session } from "next-auth";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,7 +24,7 @@ import { z } from "zod";
 
 type SignInFormValues = z.infer<typeof signInSchema>;
 
-function SignInCard() {
+function SignInCard({ session }: { session: Session | null }) {
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
   });
@@ -69,6 +70,10 @@ function SignInCard() {
     });
 
     // Redirect to dashboard page
+    router.push("/dashboard");
+  }
+
+  if (session) {
     router.push("/dashboard");
   }
 
