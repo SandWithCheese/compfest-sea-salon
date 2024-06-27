@@ -55,6 +55,20 @@ export async function getBranch(id: string): Promise<Branch | null> {
 }
 
 // Services
+export async function getServices(): Promise<Services | null> {
+  // Validate user session
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return null;
+  }
+
+  // Get all services
+  const servicesQuery = await db.select().from(services);
+
+  return servicesQuery;
+}
+
 export async function getServicesFromBranchId(
   id: string,
 ): Promise<Services | null> {

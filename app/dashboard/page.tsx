@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import {
   getAllBranchesWithServices,
+  getServices,
   getUserCurrentReservations,
   getUserPastReservations,
 } from "@/lib/query";
@@ -32,9 +33,19 @@ async function Page() {
     );
   }
 
-  const branchServices = await getAllBranchesWithServices();
+  // const branchServices = await getAllBranchesWithServices();
+  const [branchServices, services] = await Promise.all([
+    getAllBranchesWithServices(),
+    getServices(),
+  ]);
 
-  return <AdminDashboard branchServices={branchServices} session={session} />;
+  return (
+    <AdminDashboard
+      branchServices={branchServices}
+      services={services}
+      session={session}
+    />
+  );
 }
 
 export default Page;

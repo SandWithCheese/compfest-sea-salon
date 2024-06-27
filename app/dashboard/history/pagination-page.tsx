@@ -18,7 +18,7 @@ function PaginationPage({
   const page = searchParams.get("page"); // Pagination state
 
   // Pagination
-  const totalPerPage = 5;
+  const totalPerPage = 12;
   const startIdx = (parseInt(page ?? "1") - 1) * totalPerPage; // Include start index
   const endIdx = startIdx + totalPerPage; // Exclude end index
   const total = reservations?.length ?? 0;
