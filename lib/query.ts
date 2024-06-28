@@ -15,7 +15,7 @@ import { and, asc, eq, gte, lt, ne } from "drizzle-orm";
 import { Branch, Branches } from "@/types/branch";
 import { Services } from "@/types/service";
 import { Reviews, ReviewsWithUser, ReviewWithUser } from "@/types/reviews";
-import { ReservationDetails, Reservations } from "@/types/reservation";
+import { ReservationDetails } from "@/types/reservation";
 import { BranchServices } from "@/types/branchservice";
 
 // Branches

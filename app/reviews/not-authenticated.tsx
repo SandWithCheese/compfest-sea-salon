@@ -51,7 +51,7 @@ function NotAuthenticated({
       </div>
 
       {/* Pagination */}
-      <ClientPagination total={total} totalPerPage={totalPerPage} />
+      <ClientPagination total={total} totalPerPage={totalPerPage} animate />
     </main>
   );
 }

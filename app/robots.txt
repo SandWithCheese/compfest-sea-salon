@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Disallow: 
+Sitemap: https://compfest-sea-salon.vercel.app/sitemap.xml

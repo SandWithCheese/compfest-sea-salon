@@ -18,7 +18,10 @@ function ServicesSection() {
       className="flex min-h-[calc(100vh-97px)] flex-col items-center justify-center px-6 py-12 lg:px-16"
       id="services"
     >
-      <div className="flex h-full w-full flex-col items-center justify-between gap-12 lg:flex-row lg:pr-12">
+      <div
+        className="flex h-full w-full flex-col items-center justify-between gap-12 lg:flex-row lg:pr-12"
+        data-aos="fade-up"
+      >
         <div className="flex max-w-[400px] flex-col gap-8 text-center lg:text-start xl:max-w-[600px]">
           <h2 className="font-belleza text-4xl lg:text-6xl">Our Services</h2>
           <p className="text-sm lg:text-base">

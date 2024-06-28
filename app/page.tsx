@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Metadata } from "next";
 import HeroSection from "./hero-section";
-import Link from "next/link";
 import ServicesSection from "./services-section";
 
 import {
@@ -10,6 +8,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { openGraphTemplate, twitterTemplate } from "@/lib/metadata";
+
+export const metadata: Metadata = {
+  title: "SEA Salon",
+  openGraph: {
+    ...openGraphTemplate,
+    title: "SEA Salon",
+  },
+  twitter: {
+    ...twitterTemplate,
+    title: "SEA Salon",
+  },
+};
 
 export default function Home() {
   return (
@@ -25,8 +36,11 @@ export default function Home() {
         className="flex min-h-[calc(100vh-97px)] flex-col items-center justify-center px-6 py-12 sm:px-16"
         id="faq"
       >
-        <div className="flex w-full max-w-[800px] flex-col items-center justify-center gap-8">
-          <h2 className="font-belleza max-w-[500px] text-center text-4xl lg:text-6xl">
+        <div
+          className="flex w-full max-w-[800px] flex-col items-center justify-center gap-8"
+          data-aos="fade-up"
+        >
+          <h2 className="max-w-[500px] text-center font-belleza text-4xl lg:text-6xl">
             Frequently Asked Questions
           </h2>
 

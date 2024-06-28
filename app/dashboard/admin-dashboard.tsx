@@ -1,7 +1,6 @@
 "use client";
 
 import { BranchServices } from "@/types/branchservice";
-import { Session } from "next-auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Dialog,
@@ -39,11 +38,9 @@ type BranchServiceFormValues = z.infer<typeof branchServiceSchema>;
 function AdminDashboard({
   branchServices,
   services,
-  session,
 }: {
   branchServices: BranchServices | null;
   services: Services | null;
-  session: Session;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -174,7 +171,7 @@ function AdminDashboard({
 
   return (
     <main className="flex min-h-[calc(100vh-97px)] flex-col gap-8 px-6 py-12 sm:px-16">
-      <div className="flex justify-between">
+      <div className="flex justify-between" data-aos="fade-up">
         <h1 className="font-belleza text-3xl sm:text-5xl">Hello, Admin!</h1>
         <Button
           className="rounded-full px-8"
@@ -188,7 +185,7 @@ function AdminDashboard({
         </Button>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8" data-aos="fade-up">
         <div className="flex items-end justify-between">
           <p className="font-belleza text-2xl">Branches</p>
           <Dialog open={open} onOpenChange={setOpen}>

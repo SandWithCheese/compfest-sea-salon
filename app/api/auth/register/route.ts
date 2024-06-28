@@ -4,8 +4,23 @@ import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
 import { hash } from "bcrypt";
 import { v4 as uuid } from "uuid";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../[...nextauth]/auth-options";
 
 export async function POST(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+
+  // Check if user is authenticated
+  if (session) {
+    return NextResponse.json(
+      {
+        error: "Unauthorized",
+        message: "User is already authenticated",
+      },
+      { status: 401 },
+    );
+  }
+
   // Get form data
   const reqFormData = await request.formData();
   const data = Object.fromEntries(reqFormData.entries());

@@ -1,0 +1,14 @@
+{
+  "name": "SEA Salon",
+  "short_name": "SEA Salon",
+  "start_url": "https://compfes-sea-salon.vercel.app/",
+  "display": "browser",
+  "description": "Discover SEA Salon, the premier destination for all your beauty needs, known for outstanding services and excellent reviews. With a rapidly growing clientele, SEA Salon introduces the SEA Salon Application, allowing users to browse services, select preferred stylists, and book appointments easily through a user-friendly interface and seamless booking integration.",
+  "icons": [
+    {
+      "src": "/icon.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon"
+    }
+  ]
+}
