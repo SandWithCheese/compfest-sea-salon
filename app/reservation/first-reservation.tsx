@@ -114,8 +114,8 @@ function FirstReservation({ branches }: { branches: Branches | null }) {
                       </PopoverTrigger>
                       <PopoverContent className="p-0">
                         <Command>
-                          <CommandInput placeholder="Search language..." />
-                          <CommandEmpty>No language found.</CommandEmpty>
+                          <CommandInput placeholder="Search branch..." />
+                          <CommandEmpty>No branch found.</CommandEmpty>
                           <CommandGroup>
                             {branches?.map((branch) => (
                               <CommandItem

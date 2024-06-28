@@ -14,10 +14,12 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useState } from "react";
 
 function Navbar() {
   const session = useSession();
   const { theme, setTheme } = useTheme();
+  const [open, setOpen] = useState(false);
   const isLoggedIn = session.status === "authenticated";
 
   return (
@@ -31,7 +33,7 @@ function Navbar() {
           <p className="font-belleza text-3xl">SEA SALON</p>
         </Link>
         <div className="flex items-center">
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger className="block lg:hidden">
               <Menu
                 className="size-8 hover:cursor-pointer"
@@ -62,20 +64,26 @@ function Navbar() {
               <div className="pt-16">
                 <ul className="flex flex-col items-center gap-8 text-lg">
                   <li>
-                    <Link href="/reservation">Reservation</Link>
+                    <Link href="/reservation" onClick={() => setOpen(!open)}>
+                      Reservation
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/reviews">Reviews</Link>
+                    <Link href="/reviews" onClick={() => setOpen(!open)}>
+                      Reviews
+                    </Link>
                   </li>
                   <li>
                     {!isLoggedIn ? (
-                      <Link href="/auth/sign-in">
+                      <Link href="/auth/sign-in" onClick={() => setOpen(!open)}>
                         <Button className="rounded-full px-8 text-base">
                           Sign In
                         </Button>
                       </Link>
                     ) : (
-                      <Link href="/dashboard">Dashboard</Link>
+                      <Link href="/dashboard" onClick={() => setOpen(false)}>
+                        Dashboard
+                      </Link>
                     )}
                   </li>
                 </ul>

@@ -177,8 +177,8 @@ function SecondReservation({ branches }: { branches: Branches | null }) {
                       </PopoverTrigger>
                       <PopoverContent className="p-0">
                         <Command>
-                          <CommandInput placeholder="Search language..." />
-                          <CommandEmpty>No language found.</CommandEmpty>
+                          <CommandInput placeholder="Search service..." />
+                          <CommandEmpty>No service found.</CommandEmpty>
                           <CommandGroup>
                             {services.map((service) => (
                               <CommandItem
