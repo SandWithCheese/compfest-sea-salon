@@ -92,10 +92,12 @@ function SignUpCard({ session }: { session: Session | null }) {
 
     // Redirect to dashboard page
     router.push("/dashboard");
+    router.refresh();
   }
 
   if (session) {
     router.push("/dashboard");
+    router.refresh();
   }
 
   return (

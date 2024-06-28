@@ -6,7 +6,7 @@ import ReviewsCard from "./reviews-card";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { isPageValid } from "@/lib/validate-pagination";
-import { ClientPagination } from "./client-pagination";
+import { ClientPagination } from "../../components/client-pagination";
 
 function NotAuthenticated({
   allReviews,

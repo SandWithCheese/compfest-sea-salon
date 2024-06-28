@@ -111,6 +111,7 @@ function SecondReservation({ branches }: { branches: Branches | null }) {
 
     // Redirect to dashboard page
     router.push("/dashboard");
+    router.refresh();
   }
 
   useEffect(() => {
@@ -138,7 +139,7 @@ function SecondReservation({ branches }: { branches: Branches | null }) {
               form2.reset({ service: "", datetime: new Date() });
             }}
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={20} className="size-3 sm:size-5" />
           </Button>
           <CardTitle className="text-center">Reservation Form</CardTitle>
         </CardHeader>
