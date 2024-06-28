@@ -1,6 +1,20 @@
 import { getServerSession } from "next-auth";
 import SignInCard from "./sign-in-card";
 import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
+import { Metadata } from "next";
+import { openGraphTemplate, twitterTemplate } from "@/lib/metadata";
+
+export const metadata: Metadata = {
+  title: "Sign In | SEA Salon",
+  openGraph: {
+    ...openGraphTemplate,
+    title: "Sign In | SEA Salon",
+  },
+  twitter: {
+    ...twitterTemplate,
+    title: "Sign In | SEA Salon",
+  },
+};
 
 async function Page() {
   const session = await getServerSession(authOptions);

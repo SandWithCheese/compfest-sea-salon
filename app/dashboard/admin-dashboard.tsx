@@ -1,7 +1,6 @@
 "use client";
 
 import { BranchServices } from "@/types/branchservice";
-import { Session } from "next-auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Dialog,
@@ -39,11 +38,9 @@ type BranchServiceFormValues = z.infer<typeof branchServiceSchema>;
 function AdminDashboard({
   branchServices,
   services,
-  session,
 }: {
   branchServices: BranchServices | null;
   services: Services | null;
-  session: Session;
 }) {
   const [open, setOpen] = useState(false);
 

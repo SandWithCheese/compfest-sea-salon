@@ -18,7 +18,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BranchWithServices } from "@/types/branchservice";
-import { convertTo12HourFormat } from "@/lib/time";
 import { Input } from "@/components/ui/input";
 import { TimePicker } from "@/components/ui/datetime-picker";
 import { Checkbox } from "@/components/ui/checkbox";

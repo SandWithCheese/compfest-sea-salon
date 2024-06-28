@@ -10,6 +10,20 @@ import {
 } from "@/lib/query";
 import MemberDashboard from "./member-dashboard";
 import AdminDashboard from "./admin-dashboard";
+import { Metadata } from "next";
+import { openGraphTemplate, twitterTemplate } from "@/lib/metadata";
+
+export const metadata: Metadata = {
+  title: "Dashboard | SEA Salon",
+  openGraph: {
+    ...openGraphTemplate,
+    title: "Dashboard | SEA Salon",
+  },
+  twitter: {
+    ...twitterTemplate,
+    title: "Dashboard | SEA Salon",
+  },
+};
 
 async function Page() {
   const session = await getServerSession(authOptions);
@@ -38,13 +52,7 @@ async function Page() {
     getServices(),
   ]);
 
-  return (
-    <AdminDashboard
-      branchServices={branchServices}
-      services={services}
-      session={session}
-    />
-  );
+  return <AdminDashboard branchServices={branchServices} services={services} />;
 }
 
 export default Page;
