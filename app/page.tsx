@@ -36,7 +36,10 @@ export default function Home() {
         className="flex min-h-[calc(100vh-97px)] flex-col items-center justify-center px-6 py-12 sm:px-16"
         id="faq"
       >
-        <div className="flex w-full max-w-[800px] flex-col items-center justify-center gap-8">
+        <div
+          className="flex w-full max-w-[800px] flex-col items-center justify-center gap-8"
+          data-aos="fade-up"
+        >
           <h2 className="max-w-[500px] text-center font-belleza text-4xl lg:text-6xl">
             Frequently Asked Questions
           </h2>
