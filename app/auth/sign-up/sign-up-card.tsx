@@ -101,7 +101,7 @@ function SignUpCard({ session }: { session: Session | null }) {
   }
 
   return (
-    <Card className="w-full max-w-[600px] py-8">
+    <Card className="w-full max-w-[600px] py-8" data-aos="fade-up">
       <CardHeader>
         <CardTitle className="text-center">Sign Up</CardTitle>
       </CardHeader>
