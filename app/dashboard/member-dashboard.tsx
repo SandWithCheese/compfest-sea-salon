@@ -15,11 +15,13 @@ function MemberDashboard({
 }) {
   return (
     <main className="flex min-h-[calc(100vh-97px)] flex-col gap-8 px-6 py-12 sm:px-16">
-      <h1 className="font-belleza text-5xl">Hello, {session.name}!</h1>
+      <h1 className="font-belleza text-5xl" data-aos="fade-up">
+        Hello, {session.name}!
+      </h1>
 
       <div className="flex flex-col gap-8">
         {/* Current Reservations */}
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4" data-aos="fade-up">
           <div className="flex items-baseline justify-between">
             <p className="font-belleza text-2xl">Your Reservations</p>
             <Link
@@ -38,7 +40,7 @@ function MemberDashboard({
         </section>
 
         {/* Past Reservations */}
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4" data-aos="fade-up">
           <div className="flex items-baseline justify-between">
             <p className="font-belleza text-2xl">Your History</p>
             <Link href="/dashboard/history?page=1" className="hover:underline">
@@ -54,7 +56,7 @@ function MemberDashboard({
         </section>
 
         {/* Account Details */}
-        <section className="flex flex-col gap-8">
+        <section className="flex flex-col gap-8" data-aos="fade-up">
           <AccountDetails session={session} />
         </section>
       </div>

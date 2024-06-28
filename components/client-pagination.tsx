@@ -13,11 +13,13 @@ import { usePathname, useSearchParams } from "next/navigation";
 interface ClientPaginationProps {
   total: number; // Length of filtered data
   totalPerPage: number; // Total data per page
+  animate?: boolean;
 }
 
 const ClientPagination = ({
   total,
   totalPerPage,
+  animate,
   ...props
 }: ClientPaginationProps) => {
   // Search params
@@ -71,7 +73,7 @@ const ClientPagination = ({
   };
 
   return (
-    <Pagination {...props}>
+    <Pagination data-aos={animate ? "fade-up" : undefined} {...props}>
       <PaginationContent>
         {/* Previous */}
         <PaginationItem

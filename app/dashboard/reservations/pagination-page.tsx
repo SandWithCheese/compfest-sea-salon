@@ -36,7 +36,10 @@ function PaginationPage({
   }, [page, router, searchParams, total]);
 
   return (
-    <div className="flex h-full grow flex-col justify-between gap-8">
+    <div
+      className="flex h-full grow flex-col justify-between gap-8"
+      data-aos="fade-up"
+    >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {reservations && reservations.length > 0 ? (
           reservations

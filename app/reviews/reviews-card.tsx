@@ -12,7 +12,7 @@ import { ReviewWithUser } from "@/types/reviews";
 
 function ReviewsCard({ review }: { review: ReviewWithUser }) {
   return (
-    <Card className="rounded-3xl">
+    <Card className="rounded-3xl" data-aos="fade-up">
       <CardHeader>
         <CardTitle>{review.name}</CardTitle>
       </CardHeader>

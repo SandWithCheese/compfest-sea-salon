@@ -17,7 +17,7 @@ function HeroSection() {
         />
 
         <div className="relative flex h-full w-full flex-col items-center justify-center gap-8 bg-black/50 lg:gap-12">
-          <div className="flex flex-col gap-4 text-center">
+          <div className="flex flex-col gap-4 text-center" data-aos="fade-up">
             <h1 className="font-belleza text-6xl text-[#E5FAF2] lg:text-8xl">
               SEA SALON
             </h1>
@@ -29,6 +29,7 @@ function HeroSection() {
           <Button
             className="rounded-full px-8 text-xs lg:text-base"
             onClick={() => scrollToSection("services")}
+            data-aos="fade-up"
           >
             Discover
           </Button>

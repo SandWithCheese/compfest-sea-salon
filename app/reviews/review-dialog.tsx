@@ -88,7 +88,11 @@ function ReviewDialog({ session }: { session: Session | null }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="self-end" disabled={isDisabled}>
+      <DialogTrigger
+        className="self-end"
+        disabled={isDisabled}
+        data-aos="fade-up"
+      >
         <Button className="rounded-full px-12" disabled={isDisabled}>
           + Review
         </Button>
