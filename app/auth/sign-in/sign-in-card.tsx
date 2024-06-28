@@ -76,6 +76,7 @@ function SignInCard({ session }: { session: Session | null }) {
 
   if (session) {
     router.push("/dashboard");
+    router.refresh();
   }
 
   return (

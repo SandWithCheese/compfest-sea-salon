@@ -30,8 +30,10 @@ function MemberDashboard({
             </Link>
           </div>
 
-          {currentReservations && (
+          {currentReservations && currentReservations.length > 0 ? (
             <ReservationCard reservations={currentReservations} />
+          ) : (
+            <p>You have no current reservations.</p>
           )}
         </section>
 
@@ -44,8 +46,10 @@ function MemberDashboard({
             </Link>
           </div>
 
-          {pastReservations && (
+          {pastReservations && pastReservations.length > 0 ? (
             <ReservationCard reservations={pastReservations} />
+          ) : (
+            <p>You have no past reservations.</p>
           )}
         </section>
 

@@ -33,7 +33,6 @@ async function Page() {
     );
   }
 
-  // const branchServices = await getAllBranchesWithServices();
   const [branchServices, services] = await Promise.all([
     getAllBranchesWithServices(),
     getServices(),

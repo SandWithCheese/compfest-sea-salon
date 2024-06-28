@@ -16,7 +16,7 @@ async function Page() {
 
   return (
     <main className="flex min-h-[calc(100vh-97px)] flex-col gap-8 px-6 py-12 sm:px-16">
-      <h1 className="font-belleza text-5xl">Your Reservations</h1>
+      <h1 className="font-belleza text-3xl sm:text-5xl">Your Reservations</h1>
 
       <PaginationPage reservations={currentReservations} />
     </main>

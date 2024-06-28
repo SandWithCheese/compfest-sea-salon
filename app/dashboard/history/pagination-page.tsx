@@ -48,7 +48,7 @@ function PaginationPage({
               />
             ))
         ) : (
-          <p>You have no current reservations.</p>
+          <p>You have no past reservations.</p>
         )}
       </div>
 

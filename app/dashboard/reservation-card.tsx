@@ -25,7 +25,7 @@ function ReservationCard({
         className="w-full"
       >
         <CarouselContent>
-          {reservations.slice(0, 8).map((reservation) => (
+          {reservations.slice(0, 6).map((reservation) => (
             <CarouselItem
               key={reservation.id}
               className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"

@@ -11,7 +11,7 @@ import {
   reservations,
 } from "@/db/schema";
 import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
-import { and, eq, gte, lt, ne } from "drizzle-orm";
+import { and, asc, eq, gte, lt, ne } from "drizzle-orm";
 import { Branch, Branches } from "@/types/branch";
 import { Services } from "@/types/service";
 import { Reviews, ReviewsWithUser, ReviewWithUser } from "@/types/reviews";
@@ -250,6 +250,7 @@ export async function getUserCurrentReservations(
       eq(reservations.userId, id),
       gte(reservations.datetime, new Date()),
     ),
+    orderBy: asc(reservations.datetime),
   });
 
   return reservationsFullDetailsQuery;
@@ -293,6 +294,7 @@ export async function getUserPastReservations(
       eq(reservations.userId, id),
       and(eq(reservations.userId, id), lt(reservations.datetime, new Date())),
     ),
+    orderBy: asc(reservations.datetime),
   });
 
   return reservationsFullDetailsQuery;

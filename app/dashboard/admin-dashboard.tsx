@@ -32,6 +32,7 @@ import { z } from "zod";
 import { TimePicker } from "@/components/ui/datetime-picker";
 import { Services } from "@/types/service";
 import { toast } from "sonner";
+import { signOut } from "next-auth/react";
 
 type BranchServiceFormValues = z.infer<typeof branchServiceSchema>;
 
@@ -173,7 +174,19 @@ function AdminDashboard({
 
   return (
     <main className="flex min-h-[calc(100vh-97px)] flex-col gap-8 px-6 py-12 sm:px-16">
-      <h1 className="font-belleza text-5xl">Hello, Admin!</h1>
+      <div className="flex justify-between">
+        <h1 className="font-belleza text-3xl sm:text-5xl">Hello, Admin!</h1>
+        <Button
+          className="rounded-full px-8"
+          onClick={async () => {
+            await signOut({ redirect: false });
+            router.push("/");
+            router.refresh();
+          }}
+        >
+          Logout
+        </Button>
+      </div>
 
       <div className="flex flex-col gap-8">
         <div className="flex items-end justify-between">
@@ -360,7 +373,11 @@ function AdminDashboard({
             branchServices
               .slice(startIdx, endIdx)
               .map((branchService) => (
-                <BranchCard key={branchService.id} branch={branchService} />
+                <BranchCard
+                  key={branchService.id}
+                  branch={branchService}
+                  services={services}
+                />
               ))
           ) : (
             <p>You have no current branches.</p>
